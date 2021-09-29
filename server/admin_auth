@@ -1,0 +1,8 @@
+    id_num":123456,
+    "email":"admin@admin.com",
+    "password":"1234",
+    "password_confirm":"1234",
+    "city":"Adminland",
+    "street":"admin.st 6",
+    "fname":"Mr",
+    "lname":"Admin"

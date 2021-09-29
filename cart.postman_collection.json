@@ -1,0 +1,162 @@
+{
+	"info": {
+		"_postman_id": "3d5998fc-a03e-43e9-b34b-23ce42d3ff57",
+		"name": "cart",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var responseJSON = JSON.parse(responseBody);",
+							"",
+							"tests['Response contains \"user\" property'] = responseJSON.hasOwnProperty('user');",
+							"",
+							"var user = responseJSON.user || {};",
+							"",
+							"tests['User has \"email\" property'] = user.hasOwnProperty('email');",
+							"tests['User has \"username\" property'] = user.hasOwnProperty('username');",
+							"tests['User has \"token\" property'] = user.hasOwnProperty('token');",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\":\"ammar@gmail.com\", \"password\":\"Asdf123\"}"
+				},
+				"url": {
+					"raw": "{{apiUrl}}/auth/login",
+					"host": [
+						"{{apiUrl}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "signup",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var responseJSON = JSON.parse(responseBody);",
+							"",
+							"tests['Response contains \"user\" property'] = responseJSON.hasOwnProperty('user');",
+							"",
+							"var user = responseJSON.user || {};",
+							"",
+							"tests['User has \"email\" property'] = user.hasOwnProperty('email');",
+							"tests['User has \"username\" property'] = user.hasOwnProperty('username');",
+							"tests['User has \"token\" property'] = user.hasOwnProperty('token');",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\":\"admiasasd@gmail.com\" , \"is_admin\": 1, \"password\":\"Asdf123\", \"password_confirm\": \"Asdf123\",\"city\": \"Lahore\",\"street\": \"street no 18\",\"fname\": \"Ammar\",\"lname\": \"Iqbal\"}"
+				},
+				"url": {
+					"raw": "{{apiUrl}}/auth/register",
+					"host": [
+						"{{apiUrl}}"
+					],
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get cat",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var responseJSON = JSON.parse(responseBody);",
+							"",
+							"tests['Response contains \"user\" property'] = responseJSON.hasOwnProperty('user');",
+							"",
+							"var user = responseJSON.user || {};",
+							"",
+							"tests['User has \"email\" property'] = user.hasOwnProperty('email');",
+							"tests['User has \"username\" property'] = user.hasOwnProperty('username');",
+							"tests['User has \"token\" property'] = user.hasOwnProperty('token');",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{token}}"
+					}
+				],
+				"url": {
+					"raw": "{{apiUrl}}/shop/getcat",
+					"host": [
+						"{{apiUrl}}"
+					],
+					"path": [
+						"shop",
+						"getcat"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

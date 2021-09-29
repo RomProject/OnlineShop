@@ -1,0 +1,19 @@
+<upload-file (isLoader)="loader($event)" (upload)="onUploadImage($event)" #uploader></upload-file>
+<div (click)="uploader.click()"  class="uploader">
+  <label for="file-upload" id="file-drag">
+    <img *ngIf="control.value" id="file-image" [src]="control.value | image"  alt="Preview" class="hidden">
+    <div id="start" *ngIf="!control.value && !isLoader">
+      <i class="fa fa-download" aria-hidden="true"></i>
+      <div></div>
+      <div id="notimage" class="hidden">Please select an image</div>
+      <span id="file-upload-btn" class="btn btn-primary">Select a file</span>
+    </div>
+    <app-loader *ngIf="isLoader"></app-loader>
+    <div *ngIf="control.value" id="response" class="hidden">
+      <div id="messages"></div>
+      <progress class="progress" id="file-progress" [value]="uploader.uploader.progress">
+        <span>0</span>%
+      </progress>
+    </div>
+  </label>
+</div>

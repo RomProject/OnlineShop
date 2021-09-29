@@ -1,0 +1,53 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+  <div class="row p-5">
+    <div class="col-md-12">
+      <div class="alert alert-danger" role="alert" *ngIf="error">
+        {{error}}
+        <button type="button" class="close" (click)="error = null">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+    
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="fname">First Name</label>
+        <input type="text" class="form-control" formControlName="fname" id="fname" placeholder="First Name">
+      </div>
+      <div class="form-group">
+        <label for="lname">Last Name</label>
+        <input type="text" class="form-control" id="lname" formControlName="lname" placeholder="Last Name">
+      </div>
+      <div class="form-group">
+        <label for="formGroupExampleInput">Email</label>
+        <input type="email" class="form-control" id="formGroupExampleInput" formControlName="email" placeholder="Email">
+      </div>
+
+
+    </div>
+    <div class="col-md-6">
+
+      <div class="form-group">
+        <label for="city">City</label>
+        <input type="text" class="form-control" formControlName="city" id="city" placeholder="City">
+      </div>
+      <div class="form-group">
+        <label for="Street">Street</label>
+        <input type="text" class="form-control" formControlName="street" id="Street" placeholder="Street">
+      </div>
+      <div class="form-group">
+        <label for="Password">Password</label>
+        <input type="password" class="form-control" id="Password" formControlName="password" placeholder="Password">
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="row px-5 mx-5">
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+  </div>
+
+</form>

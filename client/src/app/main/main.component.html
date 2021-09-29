@@ -1,0 +1,23 @@
+<div class="row ">
+    <div class="col-md-4">
+        <form class="form-signin" [formGroup]="form" (ngSubmit)="onSubmit()">
+            <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+            
+            <div class="alert alert-danger" role="alert" *ngIf="error">
+                {{error}}
+                 <button type="button" class="close" (click)="error = null">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+
+            <label for="inputEmail" class="sr-only">Email address</label>
+            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" formControlName="email"  autofocus>
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" formControlName="password" >
+            
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            <a class="text-muted" [routerLink]="['/register']"  >Dont have an Account?</a>
+          </form>
+    </div>
+   
+</div>

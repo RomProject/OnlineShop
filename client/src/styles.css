@@ -1,0 +1,67 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~@ng-select/ng-select/themes/default.theme.css";
+input.ng-touched.ng-invalid {
+    color: red;
+   border: 1px solid red; 
+  }
+  input.ng-touched.ng-valid {
+    color: green;
+    border: 1px solid green;
+  }
+
+
+  html{
+height: 100vh;
+width: 100vw;
+background-color: lightblue;
+font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+  }
+
+  .row{
+background-color: lightblue;
+border-left: 2px solid black;
+padding: 20px;
+
+
+  }
+
+  .col-md-3{
+    display: flex;
+    justify-content:space-evenly;
+    background-color: lightblue;
+    border: 2px thick black;
+    background-color: lemonchiffon;
+
+  }
+  
+
+  .col-md-4{
+display: flex;
+padding: 50px;
+
+
+  }
+
+.logout{
+font-size: larger;
+color: red;
+
+}
+
+#navbarSupportedContent{
+
+background-color: lightgrey;
+font-size: larger;
+
+
+
+}
+
+.text-muted{
+  font-size: larger;
+  color: black;
+
+
+}

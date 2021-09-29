@@ -1,0 +1,99 @@
+<div *ngIf="!isLoader" class="row">
+  <div class="col-md-4" *ngIf="!isAdmin">
+    <table id="cart" class="table table-hover table-condensed">
+      <thead>
+      <tr>
+        <th style="width:50%">Product</th>
+        <th style="width:10%">Price</th>
+        <th style="width:8%">Quantity</th>
+        <th style="width:10%"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of cart">
+        <td data-th="Product">
+          <div class="row">
+            
+            <div class="col-sm-10">
+              <h4 class="nomargin">{{c.prod_name}}</h4>
+              
+            </div>
+          </div>
+        </td>
+        <td data-th="Price">{{c.price | currency}}</td>
+        <td data-th="Quantity">
+          <input type="number" class="form-control text-center" [(ngModel)]="c.qty">
+        </td>
+        
+        <td class="actions" data-th="">
+          <button (click)="onRemove(c.id)" class="btn btn-danger btn-sm"><span aria-hidden="true">&times;</span></button>								
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+
+      <tr>
+        <td  class="hidden-xs"></td>
+        <td colspan="2" class="hidden-xs text-center"><strong *ngIf="total !== 0">Total {{total | currency}}</strong></td>
+        <td><button [disabled]="cart.length <= 0" (click)="onOrderClick()" class="btn btn-success btn-block">Order <i class="fa fa-angle-right"></i></button></td>
+      </tr>
+    </tfoot>
+  </table>
+
+
+  </div>
+    <div class="col-md-4" *ngIf="isAdmin">
+      <h3> {{id!== null ? "Update": "Create"}} Product </h3>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="prodcutName">Product Name </label>
+              <input type="email" class="form-control" id="prodcutName" formControlName="prod_name" aria-describedby="emailHelp" placeholder="Product Name">
+            </div>
+
+            <div class="form-group">
+                <label for="prodcutPrice">Product Price </label>
+                <input type="number" class="form-control" id="prodcutPrice" formControlName="price"  placeholder="Product Price">
+              </div>
+              <div class="form-group">
+                <label for="prodcutPicture">Picture </label>
+                <upload-img [control]="imgControl"></upload-img>
+              </div>
+              <div class="form-group">
+                <label for="category_id">Category</label>
+                <ng-select [items]="categories" placeholder="Product Category" formControlName="category_id" bindLabel="cat_name" bindValue="id" [clearable]="false"  ></ng-select>
+              </div>
+           
+            <button type="reset" *ngIf="id !== null" (click)="cancel()" class="btn btn-outline-primary">cancel</button>
+            <button type="submit"  class="btn btn-primary">{{id !== null ? "Update" : "Save"}}</button>
+          </form>
+    </div>
+    <div class="col-md-8">
+        <ul ngbNav #nav="ngbNav" [(activeId)]="active" (activeIdChange)="getProducts()" class="nav-tabs" >
+            <li *ngFor="let cat of categories" [ngbNavItem]="cat.id">
+              <a ngbNavLink>{{cat.cat_name}}</a>
+              <ng-template ngbNavContent>
+                <div class="row" *ngIf="!isProductLoader && products.length > 0">
+                    <div class="col-md-3" *ngFor="let prod of products">
+                      <div class="card" >
+                        <img class="card-img-top" [src]="prod.img | image" alt="Card image cap">
+                        <div class="card-body">
+                          <h5 class="card-title">{{prod.prod_name}}</h5>
+                          <p class="card-text"> {{prod.price | currency}} </p>
+                          <a href="javascript:void(0)" class="btn btn-primary" (click)="onAddToCart(prod)" *ngIf="!isAdmin" >Add To Cart</a>
+                          <a href="javascript:void(0)" *ngIf="isAdmin" (click)="onEditClick(prod)" class="btn btn-primary">Edit </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <p  *ngIf="!isProductLoader && products.length == 0">No Products here</p>
+                <app-loader *ngIf="isProductLoader" ></app-loader>
+
+              </ng-template>
+            </li>
+          </ul>
+          
+          <div [ngbNavOutlet]="nav" class="mt-2"></div>
+    </div>
+</div>
+
+<app-loader *ngIf="isLoader"></app-loader>
